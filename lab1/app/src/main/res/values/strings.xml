@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Игра в кости</string>
+    <string name="p1">0</string>
+    <string name="p2">0</string>
+    <string name="button">Бросить две кости</string>
+    <string name="c1">0</string>
+    <string name="c2">0</string>
+    <string name="n1">У вас:</string>
+    <string name="n2">У компьютера:</string>
+    <string name="about1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</string>
+</resources>
