@@ -37,21 +37,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        if ((Integer.parseInt(computerPoints.getText().toString()) > 99) && (Integer.parseInt(computerPoints.getText().toString()) > Integer.parseInt(yourPoints.getText().toString()))) {
-            Intent intent = new Intent(this, computerWinActivity.class);
-            startActivity(intent);
-            clearAll();
+        while (yourTurn()) {
             return;
         }
 
         if ((Integer.parseInt(yourPoints.getText().toString()) > 99) && (Integer.parseInt(computerPoints.getText().toString()) < Integer.parseInt(yourPoints.getText().toString()))) {
-            Intent intent = new Intent(this, yourWinActivity.class);
-            startActivity(intent);
+            goToYouWinActivity();
             clearAll();
-            return;
-        }
-
-        while (yourTurn()) {
             return;
         }
 
@@ -59,19 +51,26 @@ public class MainActivity extends AppCompatActivity {
         computerTurn();
         findViewById(R.id.button).setEnabled(true);
 
-        if ((Integer.parseInt(computerPoints.getText().toString()) >= 100) && (Integer.parseInt(computerPoints.getText().toString()) > Integer.parseInt(yourPoints.getText().toString()))) {
-            Intent intent = new Intent(this, computerWinActivity.class);
-            startActivity(intent);
-            clearAll();
-            return;
-        }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                if ((Integer.parseInt(computerPoints.getText().toString()) > 99) && (Integer.parseInt(computerPoints.getText().toString()) > Integer.parseInt(yourPoints.getText().toString()))) {
+                    goToComputerWinActivity();
+                    clearAll();
+                    return;
+                }
+            }
+        }, 2000);
+    }
 
-        if ((Integer.parseInt(yourPoints.getText().toString()) >= 100) && (Integer.parseInt(computerPoints.getText().toString()) < Integer.parseInt(yourPoints.getText().toString()))) {
-            Intent intent = new Intent(this, yourWinActivity.class);
-            startActivity(intent);
-            clearAll();
-            return;
-        }
+    public void goToComputerWinActivity() {
+        Intent intent = new Intent(this, computerWinActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToYouWinActivity() {
+        Intent intent = new Intent(this, yourWinActivity.class);
+        startActivity(intent);
     }
 
     public void clearAll() {
