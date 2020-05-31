@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Контакты</string>
+    <string name="editName">Имя</string>
+    <string name="editEmail">Телефон</string>
+    <string name="buttonAdd">Добавить</string>
+    <string name="buttonRead">Прочитать</string>
+    <string name="buttonClear">Очистить менеджер</string>
+    <string name="buttonUpdate">Изменить</string>
+    <string name="buttonDelete">Удалить</string>
+    <string name="textVersion"> </string>
+    <string name="textPhone">Телефон</string>
+    <string name="TextName">Имя</string>
+    <string name="textId">№</string>
+    <string name="loading">Идет загрузка...</string>
+</resources>
