@@ -18,7 +18,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText editName, editEmail;
+    EditText editName, editEmail, editTelephone;
     RecyclerView recyclerView;
     UserAdapter adapter;
     List<User> list;
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         editName = findViewById(R.id.editName);
         editEmail = findViewById(R.id.editEmail);
+        editTelephone = findViewById(R.id.editTelephone);
         list = new ArrayList<>();
         adapter = new UserAdapter(this, list);
         recyclerView = findViewById(R.id.list);
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 adapter.list = list;
                 editName.setText("");
                 editEmail.setText("");
+                editTelephone.setText("");
                 adapter.notifyDataSetChanged();
             }
         };
@@ -62,9 +64,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 User user = new User();
-                user.id = App.db.userDao().count()+1;
+                user.id = App.db.userDao().count();
                 user.name = editName.getText().toString();
                 user.email = editEmail.getText().toString();
+                user.telephone = editTelephone.getText().toString();
                 App.db.userDao().insert(user);
                 list.add(user);
                 handler.sendEmptyMessage(0);
@@ -80,8 +83,8 @@ public class MainActivity extends AppCompatActivity {
                 list.clear();
                 list = App.db.userDao().readAll();
                 for (User user: list) {
-                    Log.d("Contacts", "ID = " + (user.id+1)
-                            + ", name = " + user.name + ", email = " + user.email);
+                    Log.d("Contacts", "ID = " + (user.id)
+                            + ", name = " + user.name + ", email = " + user.email + ", telephone = " + user.telephone);
                 }
                 handler.sendEmptyMessage(0);
             }
@@ -97,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 if (user != null){
                     user.name = editName.getText().toString();
                     user.email = editEmail.getText().toString();
+                    user.telephone = editTelephone.getText().toString();
                     App.db.userDao().update(user);
                     list.set(user.id, user);
                 } else {
@@ -104,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
                     user.id = App.db.userDao().count();
                     user.name = editName.getText().toString();
                     user.email = editEmail.getText().toString();
+                    user.telephone = editTelephone.getText().toString();
                     App.db.userDao().insert(user);
                     list.add(user);
                 }
@@ -121,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
                 User user = App.db.userDao().readUser(position);
                     user.name = editName.getText().toString();
                     user.email = editEmail.getText().toString();
+                    user.telephone = editTelephone.getText().toString();
                     App.db.userDao().delete(user);
                     list.set(user.id, user);
                     onReadClick(null);

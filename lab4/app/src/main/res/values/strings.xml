@@ -12,4 +12,7 @@
     <string name="TextName">Имя</string>
     <string name="textId">№</string>
     <string name="loading">Идет загрузка...</string>
+    <string name="textTelephone">Email</string>
+    <string name="telephone">Email</string>
+    <string name="wait">Подождите</string>
 </resources>

@@ -13,6 +13,6 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         app=this;
-        db = Room.databaseBuilder(this, DB.class, "contacts").build();
+        db = Room.databaseBuilder(this, DB.class, "Контакты").build();
     }
 }

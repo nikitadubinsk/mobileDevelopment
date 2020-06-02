@@ -61,7 +61,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView textID, textName, textEmail;
+        TextView textID, textName, textEmail, textTelephone;
         LinearLayout line;
 
         ViewHolder(@NonNull View itemView) {
@@ -69,6 +69,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             textID = itemView.findViewById(R.id.textID);
             textName = itemView.findViewById(R.id.textName);
             textEmail = itemView.findViewById(R.id.textEmail);
+            textTelephone = itemView.findViewById(R.id.textTelephone);
             line = itemView.findViewById(R.id.line);
         }
     }

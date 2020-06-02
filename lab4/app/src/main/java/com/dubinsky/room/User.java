@@ -14,4 +14,7 @@ public class User {
 
     @ColumnInfo(name = "email")
     public String email;
+
+    @ColumnInfo(name = "telephone")
+    public String telephone;
 }

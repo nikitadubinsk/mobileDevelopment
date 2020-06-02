@@ -13,7 +13,6 @@ import android.widget.Toast;
 public class LaunchActivity extends AppCompatActivity {
 
     Activity activity;
-    TextView textVersion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +29,6 @@ public class LaunchActivity extends AppCompatActivity {
         } catch (PackageManager.NameNotFoundException e) {
             Toast.makeText(App.app, "Ошибка", Toast.LENGTH_LONG).show();
         }
-        if (info == null) {
-            info = new PackageInfo();
-            info.versionName = "0.0";
-            info.versionCode = 0;
-        }
-        textVersion = findViewById(R.id.textVersion);
-        textVersion.setText(getString(R.string.textVersion, info.versionName, info.versionCode));
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

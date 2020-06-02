@@ -30,10 +30,19 @@
 
         <TextView
             android:id="@+id/textPhone"
-            android:layout_width="0dp"
+            android:layout_width="153dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/textPhone"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textTelephone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/textTelephone"
             android:textSize="20sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -62,6 +71,15 @@
         android:ems="10"
         android:hint="@string/editEmail"
         android:inputType="textEmailAddress|phone"
+        tools:ignore="Autofill" />
+
+    <EditText
+        android:id="@+id/editTelephone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/telephone"
+        android:inputType="date|textUri|textShortMessage|textLongMessage|textAutoCorrect|numberSigned|textVisiblePassword|textWebEditText|textMultiLine|textNoSuggestions|textFilter|number|datetime|textWebEmailAddress|textPersonName|text|textPhonetic|textCapSentences|textPassword|textAutoComplete|textImeMultiLine|textPostalAddress|numberDecimal|textEmailAddress|numberPassword|textCapWords|phone|textEmailSubject|textCapCharacters|time|textWebPassword"
         tools:ignore="Autofill" />
 
     <Button

@@ -7,15 +7,17 @@
     tools:context=".LaunchActivity">
 
     <TextView
-        android:id="@+id/textVersion"
+        android:id="@+id/loading"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text="@string/textVersion"
-        android:textAlignment="center"
-        android:textSize="24sp" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/wait"
+        android:textColor="#FF5722"
+        android:textSize="36sp"
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/loading"
+        android:id="@+id/loading2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
