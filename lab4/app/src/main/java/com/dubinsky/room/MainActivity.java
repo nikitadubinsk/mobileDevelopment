@@ -12,6 +12,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     List<User> list;
     static Handler handler;
     int position;
+    TextView buttonUpdate;
+    TextView buttonAdd;
 
     @SuppressLint("HandlerLeak")
     @Override
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        buttonUpdate = findViewById(R.id.buttonUpdate);
 
         handler = new Handler(){
             public void handleMessage(@NonNull Message message){
@@ -97,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 User user = App.db.userDao().readUser(position);
+                buttonUpdate.setText("Сохранить");
                 if (user != null){
                     user.name = editName.getText().toString();
                     user.email = editEmail.getText().toString();
@@ -130,19 +135,6 @@ public class MainActivity extends AppCompatActivity {
                     App.db.userDao().delete(user);
                     list.set(user.id, user);
                     onReadClick(null);
-                handler.sendEmptyMessage(0);
-            }
-        });
-        dbThread.start();
-    }
-
-
-    public void onClearClick(View view){
-        Thread dbThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                App.db.userDao().clear();
-                list.clear();
                 handler.sendEmptyMessage(0);
             }
         });

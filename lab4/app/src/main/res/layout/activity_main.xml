@@ -106,13 +106,5 @@
         android:onClick="onDeleteClick"
         android:text="@string/buttonDelete" />
 
-    <Button
-        android:id="@+id/buttonClear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#FF5722"
-        android:onClick="onClearClick"
-        android:text="@string/buttonClear" />
-
 
 </LinearLayout>
