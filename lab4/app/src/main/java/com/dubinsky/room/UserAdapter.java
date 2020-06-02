@@ -37,6 +37,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.textID.setText(String.valueOf(user.id));
         holder.textName.setText(user.name);
         holder.textEmail.setText(user.email);
+        holder.textTelephone.setText(user.telephone);
         holder.line.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
@@ -50,6 +51,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                 ((MainActivity) context).position = position;
                 ((MainActivity) context).editName.setText(user.name);
                 ((MainActivity) context).editEmail.setText(user.email);
+                ((MainActivity) context).editTelephone.setText(user.telephone);
             }
         });
     }
