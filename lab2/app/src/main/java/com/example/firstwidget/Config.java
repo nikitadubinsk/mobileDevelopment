@@ -11,7 +11,7 @@ import android.widget.RadioGroup;
 
 public class Config extends Activity {
 
-    int widgetID = AppWidgetManager.INVALID_APPWIDGET_ID;
+    int widgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     Intent resultValue;
 
     public final static String WIDGET_PREF = "WIDGET_PREF";
@@ -21,18 +21,17 @@ public class Config extends Activity {
     @Override
     public void onCreate(Bundle params) {
         super.onCreate(params);
-
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         if (extras != null) {
-            widgetID = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
+            widgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
         }
-        if (widgetID == AppWidgetManager.INVALID_APPWIDGET_ID) {
+        if (widgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
             finish();
         }
 
         resultValue = new Intent();
-        resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetID);
+        resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetId);
         setResult(RESULT_CANCELED, resultValue);
         setContentView(R.layout.config);
     }
@@ -67,12 +66,12 @@ public class Config extends Activity {
 
         SharedPreferences pref = getSharedPreferences(WIDGET_PREF, MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
-        edit.putString(WIDGET_TEXT + widgetID, editText.getText().toString());
-        edit.putInt(WIDGET_COLOR + widgetID, getResources().getColor(color));
+        edit.putString(WIDGET_TEXT + widgetId, editText.getText().toString());
+        edit.putInt(WIDGET_COLOR + widgetId, getResources().getColor(color));
         edit.apply();
 
         AppWidgetManager manager = AppWidgetManager.getInstance(this);
-        Widget.updateWidget(this, manager, pref, widgetID);
+        Widget.updateWidget(this, manager, pref, widgetId);
 
         setResult(RESULT_OK, resultValue);
         finish();

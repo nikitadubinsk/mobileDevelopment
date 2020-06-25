@@ -18,7 +18,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     private Context context;
     List<User> list;
     private View selected;
-    TextView buttonAdd;
 
     UserAdapter(Context context, List<User> list){
         this.context = context;

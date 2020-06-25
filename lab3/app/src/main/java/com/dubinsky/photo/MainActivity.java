@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int CAMERA_PERMISSION_REQUEST_CODE = 0;
     private static final int PICTURE_CROP = 1;
     private ImageView imageView;
-    private Uri photoUri;
+    private Uri photoURI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +43,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case CAMERA_PERMISSION_REQUEST_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                } else {
+                    Toast.makeText(this, "Нет доступа к камере", Toast.LENGTH_LONG).show();
+                }
+        }
+    }
+
     public void onClick(View view) {
-       // getPrePhoto();
         getFullPhoto();
     }
 
@@ -53,8 +63,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK) {
             if(requestCode == CAMERA_REQUEST) {
-                //Bitmap photo = (Bitmap) data.getExtras().get("data");
-                imageView.setImageURI(photoUri);
+                imageView.setImageURI(photoURI);
                 crop();
             }
             if (requestCode == PICTURE_CROP) {
@@ -71,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             cropIntent.setAction("com.android.camera.action.CROP");
             cropIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             cropIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-            cropIntent.setDataAndType(photoUri,"image/*");
+            cropIntent.setDataAndType(photoURI,"image/*");
             cropIntent.putExtra("crop", true);
             cropIntent.putExtra("aspectX", 1);
             cropIntent.putExtra("aspectY", 1);
@@ -85,25 +94,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case CAMERA_PERMISSION_REQUEST_CODE:
-// If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//Start your camera handling here
-                } else {
-                    Toast.makeText(this, "Нет доступа к камере", Toast.LENGTH_LONG).show();
-                }
-        }
-    }
-
-    private void getPrePhoto() {
-        Intent cameraIntent = new Intent();
-        cameraIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(cameraIntent, CAMERA_REQUEST);
-    }
-
     private void getFullPhoto() {
         Intent cameraIntent = new Intent();
         cameraIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -112,16 +102,16 @@ public class MainActivity extends AppCompatActivity {
             try {
                 file = createPhotoFile();
             } catch (IOException error) {
-                Toast.makeText(this, "Ошибка создания файла", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "К сожалению, произошла ошибка "+error.getMessage(), Toast.LENGTH_LONG).show();
             }
             if (file != null){
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    photoUri = FileProvider.getUriForFile(
+                    photoURI = FileProvider.getUriForFile(
                             this, "com.dubinsky.android.provider", file);
                 } else {
-                    photoUri = Uri.fromFile(file);
+                    photoURI = Uri.fromFile(file);
                 }
-                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(cameraIntent, CAMERA_REQUEST);
             }
 

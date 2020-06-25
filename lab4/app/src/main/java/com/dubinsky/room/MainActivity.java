@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     static Handler handler;
     int position;
     TextView buttonUpdate;
-    TextView buttonAdd;
 
     @SuppressLint("HandlerLeak")
     @Override
@@ -86,10 +85,6 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 list.clear();
                 list = App.db.userDao().readAll();
-                for (User user: list) {
-                    Log.d("Contacts", "ID = " + (user.id)
-                            + ", name = " + user.name + ", email = " + user.email + ", telephone = " + user.telephone);
-                }
                 handler.sendEmptyMessage(0);
             }
         });
